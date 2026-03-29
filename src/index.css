@@ -1,5 +1,54 @@
 @import "tailwindcss";
 
 body{
-  
+    padding:0;
+    margin:0;   
+    box-sizing:border-box;
+    overflow-x: hidden;
+}
+
+h1::selection,p::selection,span::selection,button::selection{
+    background-color: #D3FD50;
+    color: black;
+}
+
+
+@font-face {
+    font-family: "Lausanne";
+    src: url("../assets/Lausanne-300.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Lausanne";
+    src: url("../assets/Lausanne-500.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: black;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(255, 255, 255, 0.3);
 }
