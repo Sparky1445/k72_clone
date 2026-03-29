@@ -3,10 +3,13 @@ import { Routes, Route , Link} from 'react-router-dom'
 import Home from './pages/home.jsx'
 import Agence from './pages/agence.jsx'
 import Projects from './pages/projects.jsx'
+import Logo from './utils/Logo.jsx'
 
 const App = () => {
   return (
-    <div className='text-whit'>
+    <div>
+    
+    <Logo />
       {/* <Link className='text-2xl mr-5 text-blue-600' to="/projects">Projects</Link> */}
       
       <Routes>
