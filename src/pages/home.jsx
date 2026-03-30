@@ -6,7 +6,7 @@ import { timeCalculator } from '../utils/timeCalculator.js'
 import {useState , useEffect} from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
-import { handleHover,childColorChange, loadInAnimation , loadOutAnimation} from '../utils/gsap.js';
+import { handleHover,childColorChange, loadInAnimation , loadOutAnimation, closeButtonAnimation} from '../utils/gsap.js';
 
 
 
@@ -21,7 +21,6 @@ const Home = () => {
 
     },[]);
     
-    
 
 
     return (
@@ -34,13 +33,7 @@ const Home = () => {
             <div className='loader-curtain bg-black h-0 basis-4/20'></div>
             <div className='loader-curtain bg-black h-0 basis-4/20'></div>
         </div>
-
-        {/* Menu Container */}
-        <div className='menu-container fixed w-full h-full bg-black z-11'>
-            <div className='cross absolute w-12 h-12 top-10 right-10'>
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19 5L5 19M5.00001 5L19 19" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-            </div>
-        </div>
+   
 
         {/* HTML Elements that are out of the flow of document */}
         <div>
@@ -48,8 +41,9 @@ const Home = () => {
                 <Video />
             </div>
             {/* k72 logo and menu button */}
-            <div className='z-1 fixed w-full top-[0px]  flex justify-end flex-row'>
-        <button onClick={()=> { loadInAnimation() }} onMouseEnter={(e) => { handleHover('hoverMaskMenu',e); childColorChange(e,'hamburger-1','hamburger-2') } } onMouseLeave={(e) => { handleHover('hoverMaskMenu',e);  childColorChange(e,'hamburger-1','hamburger-2') } }   className='menu relative w-54 h-12 bg-black flex justify-end items-center ' >
+            <div className='z-1  fixed w-full top-[0px]  flex justify-end flex-row'>
+        <button onClick={()=> { loadInAnimation() ; closeButtonAnimation()}} onMouseEnter={(e) => { handleHover('hoverMaskMenu',e); childColorChange(e,'hamburger-1','hamburger-2') } } onMouseLeave={(e) => { handleHover('hoverMaskMenu',e);  childColorChange(e,'hamburger-1','hamburger-2') } }   
+        className='menu relative w-54 h-12 bg-black flex justify-end items-center ' >
             <div className='hoverMaskMenu absolute w-full h-0 top-0 bg-[#D3FD50]'></div>
                 <div className='relative z-10 flex flex-col gap-[5px] pr-8 items-end'>
                     <span className='hamburger-1 w-[50px] bg-white rounded-lg  h-[1.5px] font-weight-400'></span>
@@ -65,14 +59,6 @@ const Home = () => {
         <span className='font-weight-700 text-[20px] text-white'>{time}</span>     
 
             </div>
-
-            
-
-
-
-
-
-
 
 
 

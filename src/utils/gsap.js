@@ -4,6 +4,7 @@ import { useGSAP } from '@gsap/react';
 let tl1 = gsap.timeline(); // For the hover
 let tl2 = gsap.timeline(); // For the loader
 let tl3 = gsap.timeline(); // For the menu
+let tl4 = gsap.timeline(); // For the closeButton
 let menu = document.querySelector(".menu");
 console.log(menu);
 
@@ -79,6 +80,7 @@ export const loadOutAnimation = ()=>{
         onComplete: () => {
             const loader = document.querySelector(".loader");
             loader.style.zIndex = -1;
+            
         }
        })
 
@@ -86,7 +88,29 @@ export const loadOutAnimation = ()=>{
        
 }
 
-export const menuAnimation = () =>{
-    
-    
+export const closeButtonAnimation = ()=>{
+    const closeButton = tl4.to(".closeButton",{
+        duration:0.4,
+        transform: "translateX(-150px)",
+        delay:0,
+        opacity:1,
+        visibility:"visible",
+        ease:"power1.inOut",        
+    })
+    closeButton.play();
 }
+
+export const closeButtonAnimationOut = ()=>{
+    const closeButton = tl4.to(".closeButton",{
+        duration:0.4,
+        transform: "translateX(150px)",
+        delay:0,
+        opacity:0,
+        ease:"power1.inOut",
+        
+    })
+    closeButton.play();
+}
+
+
+
