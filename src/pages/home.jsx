@@ -6,7 +6,7 @@ import { timeCalculator } from '../utils/timeCalculator.js'
 import {useState , useEffect} from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap';
-import { handleHover,childColorChange, loadInAnimation , loadOutAnimation, closeButtonAnimation} from '../utils/gsap.js';
+import { handleHover,childColorChange, openMenuAnimation, closeButtonInAnimation} from '../utils/gsap.js';
 
 
 
@@ -42,7 +42,7 @@ const Home = () => {
             </div>
             {/* k72 logo and menu button */}
             <div className='z-1  fixed w-full top-[0px]  flex justify-end flex-row'>
-        <button onClick={()=> { loadInAnimation() ; closeButtonAnimation()}} onMouseEnter={(e) => { handleHover('hoverMaskMenu',e); childColorChange(e,'hamburger-1','hamburger-2') } } onMouseLeave={(e) => { handleHover('hoverMaskMenu',e);  childColorChange(e,'hamburger-1','hamburger-2') } }   
+        <button onClick={()=> { openMenuAnimation(); closeButtonInAnimation()}} onMouseEnter={(e) => { handleHover('hoverMaskMenu',e).play(); childColorChange(e,'hamburger-1','hamburger-2') } } onMouseLeave={(e) => { handleHover('hoverMaskMenu',e).reverse();  childColorChange(e,'hamburger-1','hamburger-2') } }   
         className='menu relative w-54 h-12 bg-black flex justify-end items-center ' >
             <div className='hoverMaskMenu absolute w-full h-0 top-0 bg-[#D3FD50]'></div>
                 <div className='relative z-10 flex flex-col gap-[5px] pr-8 items-end'>

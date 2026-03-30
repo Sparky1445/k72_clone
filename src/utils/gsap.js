@@ -1,12 +1,61 @@
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-let tl1 = gsap.timeline(); // For the hover
-let tl2 = gsap.timeline(); // For the loader
-let tl3 = gsap.timeline(); // For the menu
-let tl4 = gsap.timeline(); // For the closeButton
-let menu = document.querySelector(".menu");
-console.log(menu);
+let menuTimeline = null ;
+let hoverAnimation = null ;
+let closeButtonAnimation = null ;
+
+function getMenuTimeline(){
+    if(!menuTimeline){
+        menuTimeline = gsap.timeline({paused:true});
+        menuTimeline.addLabel('menuAnimationStart')
+            .to(".loader",{
+                duration:0.01,
+                delay:0,
+                zIndex:10,
+            })
+            .to(".loader-curtain",{
+                duration:0.3,
+                height:"100%", 
+                delay:0,
+                ease:"power1.in",
+                stagger:0.1,
+            })
+           .addPause();
+    }
+    return menuTimeline;
+}
+
+export const openMenuAnimation = ()=>{
+    getMenuTimeline().play();
+}
+export const closeMenuAnimation = ()=>{
+    getMenuTimeline().reverse();
+}
+
+function getCloseButtonAnimation(){
+    if(!closeButtonAnimation){
+        closeButtonAnimation = gsap.timeline({paused:true});
+        closeButtonAnimation.addLabel('closeButtonAnimationStart')
+            .to(".closeButton",{
+                duration:0.4,
+                transform: "translateX(-150px)",
+                delay:0,
+                opacity:1,
+                visibility:"visible",
+                ease:"power1.out",        
+    }).addPause();
+    }
+    return closeButtonAnimation;
+}
+
+export const closeButtonInAnimation = ()=>{
+    getCloseButtonAnimation().play();
+}
+export const closeButtonOutAnimation = ()=>{
+    getCloseButtonAnimation().reverse();
+}
+
 
 export const childColorChange = (e,...classNames) =>{
     if(e.type === "mouseenter"){
@@ -30,86 +79,17 @@ export const childColorChange = (e,...classNames) =>{
     }
 }
 
-
 export const handleHover = (className,e) =>{
-    
-    let hoverAnimation = tl1.to("."+className,{
+        if(!hoverAnimation){
+            hoverAnimation = gsap.timeline({paused:true});
+            hoverAnimation.to("."+className,{
             duration:0.2,
             height:"100%",
             delay:0,
             ease:"power1.inOut",
-        })
-
-    if(e.type === "mouseenter"){
-        hoverAnimation.play();
-        
-    }
-
-    else if (e.type === "mouseleave"){
-        hoverAnimation.reverse();
-    }
-        
-}
-
-export const loadInAnimation = ()=>{
-
-    const loaderSpread = tl2.to(".loader",{
-        duration:0.01,
-        delay:0,
-        zIndex:10,
-    })
-
-    const loaderCurtain = tl2.to(".loader-curtain",{
-        duration:0.3,
-        height:"100%", 
-        delay:0,
-        ease:"power1.in",
-        stagger:0.1,
-    })
-    loaderSpread.play();
-    loaderCurtain.play();
-}
-
-export const loadOutAnimation = ()=>{
-       const loaderOut = tl2.to(".loader-curtain",{
-        duration:0.3,
-        height:0, 
-        delay:0,
-        ease:"power1.out",
-        stagger:0.1,
-        onComplete: () => {
-            const loader = document.querySelector(".loader");
-            loader.style.zIndex = -1;
-            
+        }).addPause();
         }
-       })
-
-       loaderOut.play();
-       
-}
-
-export const closeButtonAnimation = ()=>{
-    const closeButton = tl4.to(".closeButton",{
-        duration:0.4,
-        transform: "translateX(-150px)",
-        delay:0,
-        opacity:1,
-        visibility:"visible",
-        ease:"power1.inOut",        
-    })
-    closeButton.play();
-}
-
-export const closeButtonAnimationOut = ()=>{
-    const closeButton = tl4.to(".closeButton",{
-        duration:0.4,
-        transform: "translateX(150px)",
-        delay:0,
-        opacity:0,
-        ease:"power1.inOut",
-        
-    })
-    closeButton.play();
+        return hoverAnimation;        
 }
 
 

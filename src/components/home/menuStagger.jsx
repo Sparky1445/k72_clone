@@ -1,14 +1,10 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
+import React from "react"
 
 const MenuStagger = () => {
-    useGSAP(() => {
-        
-    },[])
     return (
-        <div>
-            
-        </div>
+            <div className="h-1/6 w-full ">
+
+            </div>
     )
 }
 
