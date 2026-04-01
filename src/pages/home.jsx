@@ -5,6 +5,7 @@ import HomeBottomText from '../components/home/homeBottomText.jsx'
 import { timeCalculator } from '../utils/timeCalculator.js'
 import {useState , useEffect} from 'react'
 import { useGSAP } from '@gsap/react'
+import MenuStagger from '../components/home/menuStagger.jsx'
 import gsap from 'gsap';
 import { handleHover,childColorChange, openMenuAnimation, closeButtonInAnimation} from '../utils/gsap.js';
 
@@ -33,6 +34,8 @@ const Home = () => {
             <div className='loader-curtain bg-black h-0 basis-4/20'></div>
             <div className='loader-curtain bg-black h-0 basis-4/20'></div>
         </div>
+
+        <MenuStagger />
    
 
         {/* HTML Elements that are out of the flow of document */}

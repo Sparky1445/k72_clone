@@ -83,7 +83,7 @@ export const handleHover = (className,e) =>{
         if(!hoverAnimation){
             hoverAnimation = gsap.timeline({paused:true});
             hoverAnimation.to("."+className,{
-            duration:0.2,
+            duration:0.175,
             height:"100%",
             delay:0,
             ease:"power1.inOut",
