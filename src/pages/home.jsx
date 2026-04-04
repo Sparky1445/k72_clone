@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Video from '../components/home/Video.jsx'
 import HomeHeroText from '../components/home/homeHeroText.jsx'
 import HomeBottomText from '../components/home/homeBottomText.jsx'
@@ -7,6 +7,7 @@ import {useState , useEffect} from 'react'
 import { useGSAP } from '@gsap/react'
 import MenuStagger from '../components/home/menuStagger.jsx'
 import gsap from 'gsap';
+import { useMenuOpen } from '../contexts/MenuOpenContext.jsx';
 import { handleHover,childColorChange, openMenuAnimation, closeButtonInAnimation} from '../utils/gsap.js';
 
 
@@ -14,6 +15,7 @@ import { handleHover,childColorChange, openMenuAnimation, closeButtonInAnimation
 
 const Home = () => {
     const [time,setTime] = useState(timeCalculator());
+    const {isMenuOpen, setIsMenuOpen} = useMenuOpen();
 
     useEffect(()=>{
         setInterval(() => {
@@ -26,6 +28,11 @@ const Home = () => {
 
     return (
         <>
+        {isMenuOpen && 
+        <div>
+            <MenuStagger positionFromTop="0" image1="../../assets/k72bg.mp4" text="MENU" image2="../../assets/k72bg.mp4" />
+            <MenuStagger positionFromTop="2" image1="../../assets/k72bg.mp4" text="MENU" image2="../../assets/k72bg.mp4" />
+        </div> }
         {/* Loader Container */}
         <div className='loader fixed inset-0 flex flex-row-reverse  w-full h-full  bg-transparent ' >
             <div className='loader-curtain bg-black h-0 basis-3/20'></div>
@@ -35,8 +42,8 @@ const Home = () => {
             <div className='loader-curtain bg-black h-0 basis-4/20'></div>
         </div>
 
-        <MenuStagger />
-   
+
+        
 
         {/* HTML Elements that are out of the flow of document */}
         <div>
@@ -45,7 +52,7 @@ const Home = () => {
             </div>
             {/* k72 logo and menu button */}
             <div className='z-1  fixed w-full top-[0px]  flex justify-end flex-row'>
-        <button onClick={()=> { openMenuAnimation(); closeButtonInAnimation()}} onMouseEnter={(e) => { handleHover('hoverMaskMenu',e).play(); childColorChange(e,'hamburger-1','hamburger-2') } } onMouseLeave={(e) => { handleHover('hoverMaskMenu',e).reverse();  childColorChange(e,'hamburger-1','hamburger-2') } }   
+        <button onClick={()=> {  openMenuAnimation(); closeButtonInAnimation(); setIsMenuOpen(true)}} onMouseEnter={(e) => { handleHover('hoverMaskMenu',e).play(); childColorChange(e,'hamburger-1','hamburger-2') } } onMouseLeave={(e) => { handleHover('hoverMaskMenu',e).reverse();  childColorChange(e,'hamburger-1','hamburger-2') } }   
         className='menu relative w-54 h-12 bg-black flex justify-end items-center ' >
             <div className='hoverMaskMenu absolute w-full h-0 top-0 bg-[#D3FD50]'></div>
                 <div className='relative z-10 flex flex-col gap-[5px] pr-8 items-end'>

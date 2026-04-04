@@ -1,9 +1,10 @@
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-let menuTimeline = null ;
-let hoverAnimation = null ;
-let closeButtonAnimation = null ;
+let menuTimeline = null;
+let hoverAnimation = null;
+let closeButtonAnimation = null;
+let menuItemHoverAnimationTimeline = null;
 
 function getMenuTimeline(){
     if(!menuTimeline){
@@ -92,5 +93,28 @@ export const handleHover = (className,e) =>{
         return hoverAnimation;        
 }
 
+
+export function getMenuHoverAnimationTimeline(){
+    if(!menuItemHoverAnimationTimeline){
+        menuItemHoverAnimationTimeline = gsap.timeline({paused:true});
+        menuItemHoverAnimationTimeline.addLabel('menuItemHoverAnimationTimelineStart')
+            .to(".menuAnimationBox1,.menuAnimationBox2",{
+                duration:6,
+                xPercent:-50,
+                delay:0,
+                ease:"none",
+                repeat:-1,
+                visibility:"visible",
+                yoyo:true,
+            })
+            
+        
+    }
+    return menuItemHoverAnimationTimeline;
+}
+
+export function MenuHoverAnimationPause(){
+    getMenuHoverAnimationTimeline().pause();
+}
 
 
